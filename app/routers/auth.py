@@ -55,6 +55,8 @@ def register(data: UserCreate):
         "occupation": data.occupation,
     })
 
+    supabase.table("wallets").update({"balance": 1000}).eq("user_id", user_id).execute()
+
     user_res = (
         supabase.table("users")
         .select("*")
